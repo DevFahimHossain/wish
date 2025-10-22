@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday My Love 💖</title>
+  <style>
+    body {
+      background: radial-gradient(circle at top left, #0a0a0a, #000);
+      color: #00ffcc;
+      font-family: 'Fira Code', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    pre {
+      background: rgba(20, 20, 20, 0.9);
+      border: 1px solid #00ffcc55;
+      border-radius: 12px;
+      padding: 25px;
+      width: 80%;
+      max-width: 700px;
+      box-shadow: 0 0 30px #00ffcc33;
+      text-align: left;
+      font-size: 16px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    button {
+      margin-top: 25px;
+      background: linear-gradient(45deg, #00ffcc, #ff66cc);
+      color: #000;
+      font-weight: bold;
+      border: none;
+      padding: 12px 24px;
+      font-size: 17px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: 0 0 15px #00ffcc66;
+      animation: glow 2s infinite alternate;
+      z-index: 2;
+    }
+
+    @keyframes glow {
+      from { box-shadow: 0 0 10px #00ffcc; }
+      to { box-shadow: 0 0 30px #ff66cc; }
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    #message {
+      margin-top: 30px;
+      font-size: 22px;
+      color: #ff66cc;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+      z-index: 2;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .heart, .particle {
+      position: absolute;
+      opacity: 0.7;
+      animation: floatUp 6s ease-in infinite;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(0.8);
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateY(-700px) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    .typing {
+      border-right: 2px solid #00ffcc;
+      animation: blink 0.8s infinite;
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <pre id="code"></pre>
+
+  <button onclick="reveal()">Click Me 💖</button>
+
+  <div id="message">
+    🎂 Happy Birthday My Love 💕<br>
+    You are the reason my code always runs perfectly! 💻✨<br>
+    <span style="font-size:18px;">— With love, your developer 💖</span>
+  </div>
+
+  <audio id="bgMusic" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2023/03/09/audio_86a64bdbd8.mp3?filename=romantic-piano-soft-background-141422.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const codeContent = `
+/* Birthday Code by Fahim 💻💖 */
+
+const 💕Rimmi💕 = "The love of my life 💕";
+const today = new Date("October 23, 2025");
+
+function celebrate() {
+  console.log("Happy Birthday, My Queen 👑");
+  console.log("You fill my life with joy, love, and purpose ❤️");
+  console.log("Forever grateful to have you beside me 🌸");
+}
+
+celebrate();
+`;
+
+    const codeElement = document.getElementById('code');
+    const music = document.getElementById('bgMusic');
+    let i = 0;
+
+    function typeWriter() {
+      if (i < codeContent.length) {
+        codeElement.innerHTML = codeContent.substring(0, i) + '<span class="typing"></span>';
+        i++;
+        setTimeout(typeWriter, 40);
+      } else {
+        codeElement.innerHTML = codeContent;
+      }
+    }
+
+    async function reveal() {
+      const message = document.getElementById('message');
+      message.style.opacity = 1;
+      generateHearts();
+      generateParticles();
+
+      try {
+        await music.play();
+      } catch (error) {
+        alert("🎵 Tap anywhere again to enable the background music (your browser blocked autoplay).");
+      }
+    }
+
+    function generateHearts() {
+      for (let i = 0; i < 15; i++) {
+        const heart = document.createElement('div');
+        heart.innerHTML = '❤️';
+        heart.classList.add('heart');
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        heart.style.animationDuration = 4 + Math.random() * 3 + 's';
+        heart.style.fontSize = 14 + Math.random() * 25 + 'px';
+        heart.style.top = window.innerHeight - 50 + 'px';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 7000);
+      }
+    }
+
+    function generateParticles() {
+      for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        particle.style.left = Math.random() * window.innerWidth + 'px';
+        particle.style.top = Math.random() * window.innerHeight + 'px';
+        particle.style.width = '6px';
+        particle.style.height = '6px';
+        particle.style.borderRadius = '50%';
+        particle.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`;
+        particle.style.animationDuration = 3 + Math.random() * 3 + 's';
+        document.body.appendChild(particle);
+        setTimeout(() => particle.remove(), 6000);
+      }
+    }
+
+    window.onload = typeWriter;
+  </script>
+</body>
+</html>
